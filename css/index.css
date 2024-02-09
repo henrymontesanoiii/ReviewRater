@@ -3,18 +3,33 @@ html, body {
     margin: 0px;
 }
 .navbar {
-    font-size: 50px;
+    background-color: rgb(98, 98, 255);
+}
+.navTitle{
+    font-size: 45px;
     text-align: center;
+    font-family: 'Pacifico', cursive;
     color: white;
-    background-color: rgb(100, 100, 216);
     padding: 5px;
+    margin: 0px;
 }
 #loginContainer {
     background-color: rgb(235, 210, 210);
+    box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.473);
     border-radius: .25rem;
     text-align: center;
     margin: 75px auto auto auto;
     width: 500px;
     height: 500px;
     padding-top: 50px;
+}
+.loginPageBtn {
+    background-color: rgb(98, 98, 255);
+    color: white;
+    font-weight: bold;
+    width: 75px;
+    height: 30px;
+    border-radius: .25rem;
+    border: none;
+    box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.473);
 }

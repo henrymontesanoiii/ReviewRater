@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resturant Rater</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
     <div class="container">
-        <nav class="navbar">Resturant Rater!</nav>
+        <nav class="navbar"><h1 class="navTitle">Review Rater</h1></nav>
         <div id="loginContainer">
+            <h3>Been here before?</h3>
             <form action="/action_page.php">
                 <label for="fname">Username:</label><br>
                 <input type="text" id="username" name="username" value="tigbitties"><br>
                 <label for="lname">Password:</label><br>
                 <input type="text" id="password" name="password" value="********"><br><br>
-                <input type="submit" value="Login">
-            </form> 
-            <button>Sign Up</button>
+                <input class="loginPageBtn" type="submit" value="Login">
+            </form>
+            <h3>First time?</h3>
+            <button class="loginPageBtn">Sign Up</button>
         </div>
     </div>
     
