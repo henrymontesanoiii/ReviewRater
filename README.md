@@ -1,2 +1,2 @@
 # ReviewRater
-Repository for Software Engineering II Project - Sentiment Analysis for Product Rating
+Repository for Montclair State University: Software Engineering II Project - Sentiment Analysis for Product Rating
