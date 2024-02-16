@@ -50,6 +50,12 @@ html, body {
     border: none;
     box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.473);
 }
+.loginPageBtn:hover {
+    scale: 1.05;
+}
+.loginPageBtn:active {
+    scale: 0.95;
+}
 .headerClass {
     margin: 20px;
 }
