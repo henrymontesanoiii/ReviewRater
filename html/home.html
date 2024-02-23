@@ -16,7 +16,9 @@
         <h1 class="navTitleHome">Review Rater</h1> 
         <div class="auth-links">
             <a href="login.html">Login</a>
-            <a href="login.html">Sign Up</a>
+           
+            <a id="signUpBtn" href="login.html">Sign Up</a>
+            
         </div>
     </header>
 
@@ -37,8 +39,9 @@
     </nav>
 
     <main>
+        <div class=" titleRegion">
         <section id="analysis">
-            <h2>Product Analysis</h2>
+            <h2>Product Analysis</h2></div>
             <div id="productList">
                 <!-- Initial content goes here -->
                 <p>Product 1</p>
@@ -48,30 +51,14 @@
         </section>
 
         <button id="showMoreBtn" onclick="showMore()">Show More</button>
+    
+    
+        
     </main>
-
-    <!-- Your existing body content -->
-
-    <script>
-        function showMore() {
-            // Add more products dynamically when "Show More" is clicked
-            const productList = document.getElementById("productList");
-            
-            // Add more product items (adjust as needed)
-            productList.innerHTML += `
-                <p>Additional Product</p>
-                <p>Another Product</p>
-                <!-- Add more products as needed -->
-            `;
-
-            // Scroll to the bottom after adding new content
-            productList.scrollTop = productList.scrollHeight;
-        }
-    </script>
 
     <footer>
         <p>&copy; AU GOLD software engineering II</p>
     </footer>
-
+    <script src="../javas/login.js"></script>
 </body>
 </html>
