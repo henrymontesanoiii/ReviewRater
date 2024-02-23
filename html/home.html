@@ -12,16 +12,23 @@
 </head>
 <body>
 
-    <header>
-        <h1 class="navTitleHome">Review Rater</h1>
-        
-    </header>
+   
 
-    <nav class = "navbar">
+    <nav class="navbar">
+        <h1 class="navTitleHome">Review Rater</h1>
+       
         <ul>
             <li><a href="#">Submit Products</a></li>
             <li><a href="#">About</a></li>
-           <!-- Add more buttons to nav bar-->
+            <li>
+                <form class="search-form" action="/search" method="get">
+                    <input type="text" name="q" placeholder="Search...">
+                    <button type="submit">Search</button>
+                </form>
+            </li> 
+            <li class="auth-links">
+            <a href="login.html">Login</a>
+            </li>
         </ul>
     </nav>
 
@@ -30,12 +37,10 @@
             <h2>Product Analysis</h2>
             <!-- Add content related to syntactic analysis here -->
         </section>
-        
-        
     </main>
 
     <footer>
-        <p>&copy; AU GOLD softeware engineering II</p>
+        <p>&copy; AU GOLD software engineering II</p>
     </footer>
 
 </body>
