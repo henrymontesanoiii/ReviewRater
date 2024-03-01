@@ -10,3 +10,4 @@ Welcome to the Repository for Montclair State University: Software Engineering I
 - **User Profiles**: Users can register a new profile in order to submit a product comment.
 - **Responsive Design**: Access the application seamlessly across devices - desktop, tablet, or mobile from any supported web browser.
 
+## Changes
