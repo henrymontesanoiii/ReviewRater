@@ -1,0 +1,26 @@
+{
+  "name": "reviewrater",
+  "version": "1.0.0",
+  "description": "Repository for Montclair State University: Software Engineering II Project - Sentiment Analysis for Product Rating",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henrymontesanoiii/ReviewRater.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/henrymontesanoiii/ReviewRater/issues"
+  },
+  "homepage": "https://github.com/henrymontesanoiii/ReviewRater#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "firebase": "^10.8.1",
+    "firebase-admin": "^12.0.0"
+  }
+}
