@@ -7,6 +7,7 @@
   <title>Bootstrap demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -41,9 +42,8 @@
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
               <img src="../images/4star.png" alt="Girl in a jacket" height="22">
-              <h5 class="card-title">Product Name</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+              <h5 id = 'title' class="card-title"></h5>
+              <p id = 'desc' class="card-text"></p>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add Comment
@@ -79,7 +79,7 @@
 
 
 
-    <!-- Modal -->
+ 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -101,6 +101,8 @@
       </div>
     </div>
 
+     <!-- Javascript -->
+    <script type="module" src="../javas/details.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -109,6 +111,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
+
+   
 </body>
 
 </html>
