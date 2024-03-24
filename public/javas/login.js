@@ -34,17 +34,27 @@ backBtn.onclick = function myFunction() {
   };
 };
 
-function showMore() {
-  // Add more products dynamically when "Show More" is clicked
-  const productList = document.getElementById("productList");
+document.getElementById('createUserForm').addEventListener('submit', async function(event) {
+  event.preventDefault();
   
-  // Add more product items (adjust as needed)
-  productList.innerHTML += `
-      <p>Additional Product</p>
-      <p>Another Product</p>
-      <!-- Add more products as needed -->
-  `;
+  const formData = new FormData(this);
+  const data = {};
+  formData.forEach((value, key) => {
+      data[key] = value;
+  });
 
-  // Scroll to the bottom after adding new content
-  productList.scrollTop = productList.scrollHeight;
-}
+  console.log(data);
+  const response = await fetch('/create', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  });
+
+  if (response.ok) {
+      alert('User created successfully');
+  } else {
+      alert('Error creating user');
+  }
+});
