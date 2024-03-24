@@ -32,7 +32,9 @@
             <button class="loginPageBtn" id="signUpDisplayBtn">Sign Up</button>
         </div>
         <div id="signUpContainer">
-            <form>
+            <form id="createUserForm">
+                <label>Email:</label><br>
+                <input class="loginInput" type="text" name="email" value="user@mail.com"><br><br>
                 <label>First Name:</label><br>
                 <input class="loginInput" type="text" name="firstname" value="John"><br><br>
                 <label>Last Name:</label><br>
@@ -40,7 +42,8 @@
                 <label>Username:</label><br>
                 <input class="loginInput" type="text" id="signUpUsername" name="username" value="Enter Username Here"><br><br>
                 <label>Password:</label><br>
-                <input class="loginInput" type="text" id="signUpPassword" name="password" value="***********">
+                <input class="loginInput" type="text" id="signUpPassword" name="password" value="***********"><br><br>
+                <button type="submit" class="loginPageBtn">Create</button>
             </form>
             <button class="loginPageBtn" id="backBtn">Back</button>
         </div>
