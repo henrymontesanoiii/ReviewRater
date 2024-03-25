@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/login.css">
+   >
+    <title>Syntactic Analysis Website</title>
+</head>
+<body>
+    <header>
+        <h1 class="navTitleHome">Review Rater</h1> 
+        <div class="auth-links">
+            <a href="login.html">Login</a>
+           
+            <a id="signUpBtn" href="login.html">Sign Up</a>
+            
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">Restaurant</a></li>
+            <li><a href="#">Home Service</a></li>
+            <li><a href="#">Auto Care</a></li>
+            <li><a href="#">Electronics</a></li>
+            <li><a href="#">Toy's</a></li>
+            <li>
+                <form class="search-form" action="/search" method="get">
+                    <input class="search-input" type="text" name="q" placeholder="Search...">
+                    <button class="search-button" type="submit">Search</button>
+                </form>
+            </li> 
+        </ul>
+    </nav>
+
+    <main>
+        <div class=" titleRegion">
+        <section id="analysis">
+            <h2>Product Analysis</h2></div>
+            <div id="productList">
+                <!-- Initial content goes here -->
+                <p>Product 1</p>
+                <p>Product 2</p>
+                <!-- Add more products as needed -->
+            </div>
+        </section>
+
+        <button id="showMoreBtn" onclick="showMore()">Show More</button>
+    
+    
+        
+    </main>
+
+    <footer>
+        <p>&copy; AU GOLD software engineering II</p>
+    </footer>
+    <script src="../javas/login.js"></script>
+</body>
+</html>

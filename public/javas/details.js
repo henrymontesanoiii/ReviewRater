@@ -4,8 +4,14 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, getDoc } from 'firebase/firestore/lite';
 
 // Your web app's Firebase configuration
-//PASTE FIREBASE CONFIG HERE!!!!!!
-
+const firebaseConfig = {
+  apiKey: "AIzaSyBou6XmpPSnhcoGk4rsvap_nNVtChBh7xg",
+  authDomain: "reviewrater-b4cfd.firebaseapp.com",
+  projectId: "reviewrater-b4cfd",
+  storageBucket: "reviewrater-b4cfd.appspot.com",
+  messagingSenderId: "1024129262624",
+  appId: "1:1024129262624:web:7b2460bc9f15014c32c845"
+};
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -40,11 +46,11 @@ async function getProduct(db) {
     /*document.getElementById("title").innerHTML = prodName;
     document.getElementById("desc").innerHTML = prodDesc;
     */
-    console.log("Product: \n")
+    console.log("Product: \n");
     console.log(prodName);
     console.log(prodRating);
     console.log(prodDesc);
-    console.log("\n")
+    console.log("\n");
     
   } else {
   // docSnap.data() will be undefined in this case
@@ -70,3 +76,4 @@ async function getProduct(db) {
 
 }
 getProduct(db);
+

@@ -1,0 +1,120 @@
+body {
+    
+    margin: 0;
+    padding: 0;
+   background-color: f8f8f8;
+   color: #333;
+}
+
+header {
+    background-color: #ffffff; 
+    color: #fff;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    display: flex;
+}
+
+.navTitleHome{
+    font-size: 45px;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    color: rgb(66, 107, 41);
+    margin: 0px 0px 0px 25px;
+}
+nav {
+    background-color: #ffffff; 
+    color: #fff;
+    padding: 7px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+nav a {
+    text-decoration: none;
+    color: #008000;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #008000; /* Green */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.auth-links a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.search-form {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+.search-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgb(66, 107, 41);
+    border: none;
+    border-radius: 0 5px 5px 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+#analysis {
+    max-height: 300px; /* Set a maximum height for initial display */
+    overflow-y: auto; /* Enable vertical scroll */
+}
+
+#showMoreBtn {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(66, 107, 41);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+.titleRegion{
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    color: rgba(45,46,47,1);
+}
