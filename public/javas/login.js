@@ -13,16 +13,6 @@ signUpDisplayBtn.onclick = function myFunction() {
       signUpContainer.style.display = "block";
     };
 };
-signUpBtn.onclick = function myFunction() {
-  console.log("clicked!");
-  if (loginContainer.style.display === "none") {
-    loginContainer.style.display = "block";
-    signUpContainer.style.display = "none";
-  } else {
-    loginContainer.style.display = "none";
-    signUpContainer.style.display = "block";
-  };
-};
 
 backBtn.onclick = function myFunction() {
   if(signUpContainer.style.display == "block"){
