@@ -15,32 +15,82 @@ header {
     display: flex;
 }
 
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+
+
 .navTitleHome{
     font-size: 45px;
     text-align: center;
     font-family: 'Pacifico', cursive;
     color: rgb(66, 107, 41);
-    margin: 0px 0px 0px 25px;
+    margin-right: 15px;
 }
-nav {
-    background-color: #ffffff; 
-    color: #fff;
-    padding: 7px;
+.navbar {
+    margin-left: 30px; /* Adjust margin-left for positioning */
+    padding: 20px 40px; /* Adjust padding for lengthening */
 }
 
-nav ul {
-    list-style: none;
+.navbar ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-around;
-    
+    margin-left: auto; /* This will move the navbar to the right */
 }
 
-nav a {
-    text-decoration: none;
-    color: #008000;
+.navbar ul li {
+    margin-right: 30px; /* Increase margin-right for more space between items */
 }
+
+.navbar ul li:last-child {
+    margin-right: 0;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    
+}
+/* Add hover effect */
+.navbar ul li a:hover {
+    color: green;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 
 main {
     padding: 20px;
@@ -73,8 +123,8 @@ footer {
 }
 
 .search-input {
-    width: 200px;
-    padding: 10px;
+    width: 250px;
+    padding: 8px 20px;
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -85,7 +135,7 @@ footer {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 10px;
+    padding: 8px 20px;
     background-color: rgb(66, 107, 41);
     border: none;
     border-radius: 0 5px 5px 0;
@@ -118,3 +168,17 @@ footer {
     overflow-wrap: break-word !important;
     color: rgba(45,46,47,1);
 }
+.carousel-item {
+    height: 32rem;
+    background: #777;
+    color: white;
+    position: relative;
+}
+.container{
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding-bottom:50px;
+}
+
