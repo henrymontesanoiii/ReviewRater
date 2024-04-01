@@ -1,79 +1,149 @@
+const productID = "Lay's Chips"; //TO BE FIXED
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, getDoc } from 'firebase/firestore/lite';
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyBou6XmpPSnhcoGk4rsvap_nNVtChBh7xg",
-  authDomain: "reviewrater-b4cfd.firebaseapp.com",
-  projectId: "reviewrater-b4cfd",
-  storageBucket: "reviewrater-b4cfd.appspot.com",
-  messagingSenderId: "1024129262624",
-  appId: "1:1024129262624:web:7b2460bc9f15014c32c845"
-};
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-//Initialize Product Variables
-
-// Get products list
-async function getProduct(db) {
-  /*
-  //gets all products
-  let prodName = "";
-  let prodDesc = "";
-  const productCol = collection(db, 'products');
-  const productSnapshot = await getDocs(productCol);
-  const productsList = productSnapshot.docs.map(doc => doc.data());
-  console.log(productsList)
-  */
-
-  let prodName = "";
-  let prodDesc = "";
-  let prodRating = 0;
-  const productID = "VH9oGG3pusaizEanXDTS";
-
-  const docRef = doc(db, 'products', productID);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    prodName = docSnap.data().name;
-    prodDesc= docSnap.data().description;
-    prodRating= docSnap.data().rating;
-    //IMPORTANT: RESTORE WHEN USING BROWSER 
-    /*document.getElementById("title").innerHTML = prodName;
-    document.getElementById("desc").innerHTML = prodDesc;
-    */
-    console.log("Product: \n");
-    console.log(prodName);
-    console.log(prodRating);
-    console.log(prodDesc);
-    console.log("\n");
-    
-  } else {
-  // docSnap.data() will be undefined in this case
-    console.log("No such document!");
-  } 
-
-  //comments
-  const commentCol = collection(db, 'comments');
-  const commentSnapshot = await getDocs(commentCol);
-  const commentList = commentSnapshot.docs.map(doc => doc.data());
-  let comments = [];
-  //return specified product
-  for (let i = 0; i < commentList.length; i++) { 
-    if (commentList[i].product==productID){
-      comments.push(commentList[i]);
+//return Product Details Function
+async function fetchProduct() {
+  try {
+    console.log("Fetching Product ...")
+    const response = await fetch('/prod'); //change to + productID endpoint
+    if (!response.ok) {
+      throw new Error('Network response was not ok.');
     }
-   
+    const returnedObject = response.json();
+    return returnedObject;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return null;
   }
-  console.log("Comments: \n")
-  for (let j = 0; j < comments.length; j++) {
-    console.log(comments[j]);
-  }
-
 }
-getProduct(db);
 
+//return associated product comments function
+async function fetchComms() {
+  try {
+    console.log("Fetching Comments ...");
+    const response = await fetch('/comms'); //change to + productID endpoint
+    if (!response.ok) {
+      throw new Error('Network response was not ok.');
+    }
+    const returnedComments = response.json();
+    return returnedComments;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return null;
+  }
+}
+
+//call API to retrive product & dynamically populate html
+fetchProduct().then(returnedObject => {
+  if (returnedObject) {
+    let prodName = returnedObject.name;
+    let prodDesc = returnedObject.description;
+    let prodRating = Math.round(returnedObject.rating);
+    let prodImg = returnedObject.img;
+    document.getElementById("title").innerHTML = prodName;
+    document.getElementById("desc").innerHTML = prodDesc;
+    document.getElementById("img").src = prodImg;
+
+    switch (prodRating) {
+      case (prodRating = 1):
+        document.getElementById("rating").src = "../images/1star.png";
+        break;
+      case (prodRating = 2):
+        document.getElementById("rating").src = "../images/2star.png";
+        break;
+      case (prodRating = 3):
+        document.getElementById("rating").src = "../images/3star.png";
+        break;
+      case (prodRating = 4):
+        document.getElementById("rating").src = "../images/4star.png";
+        break;
+      case (prodRating = 5):
+        document.getElementById("rating").src = "../images/5star.png";
+        break;
+      default:
+        console.log("Error finding rating");
+    }
+
+  } else {
+    // Handle error
+    console.log("Error fetching product.");
+  }
+});
+
+//call API to retrive comments & dynamically populate html
+fetchComms().then(returnedComments => {
+  if (returnedComments) {
+    let commentReviewer = "";
+    let commentRating = 0;
+    let commentDescription = "";
+    console.log("RETURNED COMMENTS");
+    console.log(returnedComments);
+    returnedComments.forEach(element => {
+      commentReviewer = element.reviewer;
+      commentRating = element.rating;
+      commentDescription = element.description;
+
+      //card variables
+
+      let breakDiv = document.createElement('br');
+
+      let outsideCard = document.createElement('div');
+      outsideCard.classList.add('card');
+      //outsideCard.style('width: 18rem;');
+
+      let cardBody = document.createElement('div');
+      cardBody.classList.add('card-body');
+
+      let cardImage = document.createElement('img');
+      cardImage.setAttribute('src', '../images/4star.png');
+      cardImage.setAttribute('alt', 'Girl in a jacket');
+      cardImage.setAttribute('height', '22');
+
+      let cardTitle = document.createElement('h5');
+      cardTitle.classList.add('card-title');
+      cardTitle.innerHTML = commentReviewer;
+
+      let cardText = document.createElement('p');
+      cardText.classList.add('card-text');
+      cardText.innerHTML = commentDescription;
+
+      document.getElementById("comments").appendChild(outsideCard);
+      document.getElementById("comments").appendChild(cardBody);
+      document.getElementById("comments").appendChild(cardTitle);
+      document.getElementById("comments").appendChild(cardImage);
+      document.getElementById("comments").appendChild(cardText);
+      document.getElementById("comments").appendChild(breakDiv);
+    });
+  } else {
+    // Handle error
+    console.log("Error fetching comments.");
+  }
+});
+
+//add new comment
+document.getElementById('commentForm').addEventListener('submit', async function (event) {
+  event.preventDefault();
+  newComment = "";
+  const data = new FormData(this);
+  for (const [name, value] of data) {
+    newComment = value;
+  }
+  const response = await fetch('/newcomment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      product: productID,
+      description: newComment,
+      rating: 2, //TO BE REPLACED WITH SENTIMENT ANALYSIS
+      reviewer: 'TESTUSER' //TO BE REPLACED WITH COOKIE DATA
+    })
+  });
+
+  if (response.ok) {
+    alert('Comment Successfully Submitted!');
+    location.reload();
+  } else {
+    alert('Error creating comment');
+  }
+});
