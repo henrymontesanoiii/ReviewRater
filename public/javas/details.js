@@ -1,4 +1,5 @@
 const productID = "Lay's Chips"; //TO BE FIXED
+const userID = "miken@gmail.com"; //TO BE FIXED
 
 //return Product Details Function
 async function fetchProduct() {
@@ -15,7 +16,59 @@ async function fetchProduct() {
     return null;
   }
 }
+//Delete Comment
+async function editComment(id) {
+  var newText = prompt('Enter edited comment below:');
+  if (newText != null) {
+    const response = await fetch('/edit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        product: productID,
+        reviewer: userID,
+        description: id,
+        newText: newText
+      })
+    });
+    if (response.ok) {
+      alert('Comment Successfully Edited!');
+      location.reload();
+    } else {
+      alert('Error deleting comment');
+    }
+  } else {
+    // Do nothing!
+    console.log("Did not delete");
+  }
+}
+//Delete Comment
+async function deleteComment(id) {
+  if (confirm('Are you sure you want to delete your comment?')) {
+    const response = await fetch('/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        product: productID,
+        reviewer: userID,
+        description: id
+      })
+    });
+    if (response.ok) {
+      alert('Comment Successfully Deleted!');
+      location.reload();
+    } else {
+      alert('Error deleting comment');
+    }
+  } else {
+    // Do nothing!
+    console.log("Did not delete");
+  }
 
+}
 //return associated product comments function
 async function fetchComms() {
   try {
@@ -85,7 +138,7 @@ fetchComms().then(returnedComments => {
       //card variables
 
       let breakDiv = document.createElement('br');
-
+      let divVar = document.createElement('div');
       let outsideCard = document.createElement('div');
       outsideCard.classList.add('card');
       //outsideCard.style('width: 18rem;');
@@ -106,12 +159,48 @@ fetchComms().then(returnedComments => {
       cardText.classList.add('card-text');
       cardText.innerHTML = commentDescription;
 
+      //create edit button
+      let editButton = document.createElement('button');
+      editButton.classList.add('btn');
+      editButton.classList.add('btn-warning');
+      editButton.id = commentDescription;
+      editButton.classList.add(commentReviewer);
+      editButton.innerHTML = "Edit Comment";
+
+      //create delete button
+      let deleteButton = document.createElement('button');
+      deleteButton.classList.add('btn');
+      deleteButton.classList.add('btn-danger');
+      deleteButton.id = commentDescription;
+      deleteButton.innerHTML = "Delete Comment";
+
+      //append new cards to html
       document.getElementById("comments").appendChild(outsideCard);
       document.getElementById("comments").appendChild(cardBody);
       document.getElementById("comments").appendChild(cardTitle);
       document.getElementById("comments").appendChild(cardImage);
       document.getElementById("comments").appendChild(cardText);
+      if (commentReviewer == userID) {
+        document.getElementById("comments").appendChild(editButton);
+        document.getElementById("comments").appendChild(deleteButton);
+      }
+      document.getElementById("comments").appendChild(divVar);
       document.getElementById("comments").appendChild(breakDiv);
+    });
+
+    //adding eventlistener to dynamic buttons
+    let editbtns = document.querySelectorAll(".btn-warning");
+    let deletebtns = document.querySelectorAll(".btn-danger");
+
+    editbtns.forEach(edbtn => {
+      edbtn.addEventListener('click', (event) => {
+        editComment(edbtn.id);
+      });
+    });
+    deletebtns.forEach(delbtn => {
+      delbtn.addEventListener('click', (event) => {
+        deleteComment(delbtn.id);
+      });
     });
   } else {
     // Handle error
@@ -136,7 +225,7 @@ document.getElementById('commentForm').addEventListener('submit', async function
       product: productID,
       description: newComment,
       rating: 2, //TO BE REPLACED WITH SENTIMENT ANALYSIS
-      reviewer: 'TESTUSER' //TO BE REPLACED WITH COOKIE DATA
+      reviewer: userID //TO BE REPLACED WITH COOKIE DATA
     })
   });
 
@@ -147,3 +236,4 @@ document.getElementById('commentForm').addEventListener('submit', async function
     alert('Error creating comment');
   }
 });
+

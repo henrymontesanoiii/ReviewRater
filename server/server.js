@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+var firebase = require("firebase/app");
 let productName = "Lay's Chips";
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,12 +22,6 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-//Session Cookie
-app.use(session({
-    secret: 'some secret',
-    cookie: {maxAge: 3600000},
-    saveUninitialized: false
-  }))
 
 //Create New Account
 app.post('/create', async (req, res) => {
@@ -47,6 +44,52 @@ app.post('/create', async (req, res) => {
     } catch (error) {
         console.error('Error creating user:', error);
         res.send(error);
+    }
+});
+
+//Edit Comment
+app.post('/edit', async (req, res) => {
+    try {
+        console.log('Received POST request to /edit');
+        console.log('Request body:', req.body);
+        const product = req.body.product;
+        const reviewer = req.body.reviewer;
+        const description = req.body.description;
+        const newDescription = req.body.newText;
+        var query = await admin.firestore().collection('comments')
+            .where('description', '==', description)
+            .get().then(result => {
+                result.forEach((doc) => {
+                    response = db.collection('comments').doc(doc.id).update({'description': newDescription});
+                });
+            });
+        res.sendStatus(200);
+    } catch (error) {
+        console.log('Error editing comment:', error);
+        res.sendStatus(error);
+    }
+});
+
+//Delete Comment
+app.post('/delete', async (req, res) => {
+    try {
+        console.log('Received POST request to /delete');
+        console.log('Request body:', req.body);
+        const product = req.body.product;
+        const reviewer = req.body.reviewer;
+        const description = req.body.description;
+        let response = '';
+        var query = await admin.firestore().collection('comments')
+            .where('description', '==', description)
+            .get().then(result => {
+                result.forEach((doc) => {
+                    response = db.collection('comments').doc(doc.id).delete();
+                });
+            });
+        res.send(200);
+    } catch (error) {
+        console.log('Error deleting comment:', error);
+        res.sendStatus(error);
     }
 });
 
@@ -96,30 +139,30 @@ app.get('/prod', async (req, res) => {
             prodArr.push(doc.data());
         });
         for (let j = 0; j < prodArr.length; j++) {
-            if (prodArr[j].name == "Lay's Chips"){
+            if (prodArr[j].name == "Lay's Chips") {
                 productName == prodArr[j].name;
-                res.send(prodArr[j]);    
+                res.send(prodArr[j]);
             }
-          }
+        }
     } catch (error) {
         res.send(error);
     }
 });
 
 //comments endpoint
-app.get('/comms', async (req, res, ) => {
+app.get('/comms', async (req, res,) => {
     try {
         const comsCol = db.collection("comments");
         const comsResponse = await comsCol.get();
         const commentList = comsResponse.docs.map(doc => doc.data());
         let comments = [];
-        for (let i = 0; i < commentList.length; i++) { 
-            if (commentList[i].product==productName){
+        for (let i = 0; i < commentList.length; i++) {
+            if (commentList[i].product == productName) {
                 comments.push(commentList[i]);
             }
         }
 
-    res.send(comments);
+        res.send(comments);
     } catch (error) {
         res.send(error);
     }
