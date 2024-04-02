@@ -33,6 +33,10 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
       data[key] = value;
   });
 
+  data['uid'] = 1;
+  
+  console.log("your data email",data.email);
+
   const response = await fetch('/create', {
       method: 'POST',
       headers: {
@@ -43,7 +47,9 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
 
   if (response.ok) {
       alert('User created successfully');
-      window.location.href='/home';
+      sessionStorage.setItem("username", data.username);
+      sessionStorage.setItem('password', data.password);
+      // window.location.href='/home';
   } else {
       alert('Error creating user');
   }
@@ -70,6 +76,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       const userData = await response.json();
       sessionStorage.setItem('userData', JSON.stringify(userData));
       alert('logged in successfully');
+      sessionStorage.setItem("username", data.username);
+      sessionStorage.setItem('password', data.password);
       window.location.href = '/home';
   } else {
       alert('Invalid credentials');
