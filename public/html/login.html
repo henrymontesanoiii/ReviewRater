@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Rater</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h1 class="navTitle">Review Rater</h1>
+            <div></div>
+            <div class="navBtnDiv">
+                <button class="loginPageBtn">Products</button>
+                <button class="loginPageBtn">Review</button>
+            </div>
+        </nav>
+        <div id="loginContainer">
+            <h3 class="headerClass">Been here before?</h3>
+            <form id="loginForm">
+                <label>Username:</label><br>
+                <input class="loginInput" type="text" id="loginUsername" name="username" value="Enter Username Here"><br><br>
+                <label>Password:</label><br>
+                <input class="loginInput" type="text" id="loginPassword" name="password" value="***********"><br><br>
+                <button type="submit" class="loginPageBtn">Login</button>
+            </form>
+            <h3 class="headerClass">First time?</h3>
+            <button class="loginPageBtn" id="signUpDisplayBtn">Sign Up</button>
+        </div>
+        <div id="signUpContainer">
+            <form id="createUserForm">
+                <label>Email:</label><br>
+                <input class="loginInput" type="text" name="email" value="user@mail.com"><br><br>
+                <label>First Name:</label><br>
+                <input class="loginInput" type="text" name="firstname" value="John"><br><br>
+                <label>Last Name:</label><br>
+                <input class="loginInput" type="text" name="lastname" value="Smith"><br><br>
+                <label>Username:</label><br>
+                <input class="loginInput" type="text" id="signUpUsername" name="username" value="Enter Username Here"><br><br>
+                <label>Password:</label><br>
+                <input class="loginInput" type="text" id="signUpPassword" name="password" value="***********"><br><br>
+                <button type="submit" class="loginPageBtn">Create</button>
+            </form>
+            <button class="loginPageBtn" id="backBtn">Back</button>
+        </div>
+    </div>
+    <script src="../javas/login.js"></script>
+</body>
+</html>

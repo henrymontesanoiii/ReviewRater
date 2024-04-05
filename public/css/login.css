@@ -1,0 +1,76 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+}
+.container {
+    padding-bottom: 50px;
+}
+.navbar {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(230, 230, 230);
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.navTitle{
+    font-size: 45px;
+    text-align: left;
+    font-family: 'Pacifico', cursive;
+    color: rgb(66, 107, 41);
+    margin: 0px 0px 0px 25px;
+}
+.navBtnDiv {
+    text-align: right;
+    padding: 25px;
+}
+#loginContainer {
+    display: block;
+    background-color: rgb(250, 250, 245);
+    border: 2px solid rgb(230, 230, 230);
+    color: rgb(66, 107, 41);
+    border-radius: 24px;
+    text-align: center;
+    margin: 75px auto auto auto;
+    width: 500px;
+    height: 500px;
+    padding-top: 50px;
+}
+.loginInput {
+    width: 200px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: .25rem;
+}
+.loginPageBtn {
+    background-color: rgb(66, 107, 41);
+    color: white;
+    font-weight: bold;
+    width: 75px;
+    height: 30px;
+    border-radius: .25rem;
+    border: none;
+    box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.473);
+}
+.loginPageBtn:hover {
+    scale: 1.05;
+}
+.loginPageBtn:active {
+    scale: 0.95;
+}
+.headerClass {
+    margin: 20px;
+}
+#signUpContainer {
+    display: none;
+    margin: 75px auto auto auto;
+    text-align: center;
+    padding-top: 25px;
+    width: 300px;
+    background-color: rgb(250, 250, 245);
+    border: 2px solid rgb(230, 230, 230);
+    color: rgb(66, 107, 41);
+    border-radius: 24px;
+}
+#backBtn {
+    margin-top:20px;
+    margin-bottom:10px;
+}
