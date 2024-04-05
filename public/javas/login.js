@@ -49,7 +49,7 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
       alert('User created successfully');
       sessionStorage.setItem("username", data.username);
       sessionStorage.setItem('password', data.password);
-      // window.location.href='/home';
+      window.location.href='/home';
   } else {
       alert('Error creating user');
   }
