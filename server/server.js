@@ -22,6 +22,27 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+//Login
+app.post('/login', async (req, res) => {
+    try {
+        console.log('Received POST request to /login');
+        console.log('Request body:', req.body);
+
+        const username = req.body.username;
+        const password = req.body.password;
+        const userSnapshot = await db.collection("reviewer").where("username", "==", username).where("password", "==", password).get();
+
+        if (userSnapshot.empty) {
+            return res.status(401).send("Invalid credentials");
+        } else {
+            const userData = userSnapshot.docs[0].data();
+            res.status(200).json(userData);
+        }
+    } catch (error) {
+        console.error('Error logging in:', error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 //Create New Account
 app.post('/create', async (req, res) => {
