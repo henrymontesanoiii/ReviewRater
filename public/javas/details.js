@@ -1,5 +1,6 @@
 const productID = "Lay's Chips"; //TO BE FIXED
-const userID = "miken@gmail.com"; //TO BE FIXED
+const userID = sessionStorage.getItem('username');
+
 
 //return Product Details Function
 async function fetchProduct() {
