@@ -10,6 +10,9 @@ Welcome to the Repository for Montclair State University: Software Engineering I
 - **User Profiles**: Users can register a new profile in order to submit a product comment.
 - **Responsive Design**: Access the application seamlessly across devices - desktop, tablet, or mobile from any supported web browser.
 
+<<<<<<< HEAD
+=======
 ## Changes
 
 Added three branches, Main branch, login page branch, and prdouct details branch. Each branch has a CSS, HTML, and Java folder. These folders are used to keep their perspective code in order. The product details branch has an additional folder named images to keep images used for that function only in order. Lastly the readme file which is what you are reading right now.
+>>>>>>> 7f59336dcb2eb8bc5f2ef3429205fb893a3c3a97

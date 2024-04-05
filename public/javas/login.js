@@ -37,6 +37,10 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
   
   console.log("your data email",data.email);
 
+  data['uid'] = 1;
+  
+  console.log("your data email",data.email);
+
   const response = await fetch('/create', {
       method: 'POST',
       headers: {
@@ -50,8 +54,40 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
       sessionStorage.setItem("username", data.username);
       sessionStorage.setItem('password', data.password);
       window.location.href='/home';
+      sessionStorage.setItem("username", data.username);
+      sessionStorage.setItem('password', data.password);
+      // window.location.href='/home';
   } else {
       alert('Error creating user');
+  }
+});
+
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+  event.preventDefault();
+  
+  const formData = new FormData(this);
+  const data = {};
+  formData.forEach((value, key) => {
+      data[key] = value;
+  });
+
+  const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  });
+
+  if (response.ok) {
+      const userData = await response.json();
+      sessionStorage.setItem('userData', JSON.stringify(userData));
+      alert('logged in successfully');
+      sessionStorage.setItem("username", data.username);
+      sessionStorage.setItem('password', data.password);
+      window.location.href = '/home';
+  } else {
+      alert('Invalid credentials');
   }
 });
 
