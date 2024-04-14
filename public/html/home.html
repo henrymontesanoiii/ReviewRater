@@ -58,7 +58,7 @@
             </nav>
         </div>
         <div class="auth-links">
-            <a href="login.html">Login</a>
+            <a id="loginBtn" href="login.html">Login</a>
             <a id="signUpBtn" href="login.html">Sign Up</a>
         </div>
     </header>
@@ -96,6 +96,9 @@
         <div class="titleRegion"> 
             <section id="analysis">
                 <h2>Most Recent</h2>
+                <div class="username-display">
+                    <!-- Username will be inserted here by JavaScript -->
+                </div>
                 <div id="productList">
                     <!-- Initial content goes here -->
                     
@@ -116,6 +119,19 @@
     <script src="../javas/login.js"></script>
     <script>
         console.log("logged in as: ", sessionStorage.getItem("username"));
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // JavaScript for displaying the username
+            const username = sessionStorage.getItem("username");
+            if (username) {
+                const usernameDisplay = document.createElement('span');
+                usernameDisplay.textContent = `Welcome User: ${username}`;
+                // Append the username display to the .username-display element
+                document.querySelector('.username-display').appendChild(usernameDisplay);
+                document.getElementById('loginBtn').style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
