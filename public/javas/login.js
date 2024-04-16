@@ -1,21 +1,24 @@
 var signUpDisplayBtn = document.getElementById("signUpDisplayBtn");
-var signUpBtn = document.getElementById("signUpBtn");
 var backBtn = document.getElementById("backBtn");
 var loginContainer = document.getElementById("loginContainer");
 var signUpContainer = document.getElementById("signUpContainer");
 
 signUpDisplayBtn.onclick = function myFunction() {
-    if (loginContainer.style.display === "none") {
-      loginContainer.style.display = "block";
-      signUpContainer.style.display = "none";
-    } else {
-      loginContainer.style.display = "none";
-      signUpContainer.style.display = "block";
-    };
+  sessionStorage.setItem("signUpDisplay","display");
+  console.log(sessionStorage.getItem('signUpDisplay'));
+  if (sessionStorage.getItem("signUpDisplay") !== "display") {
+    loginContainer.style.display = "block";
+    signUpContainer.style.display = "none";
+  } else {
+    loginContainer.style.display = "none";
+    signUpContainer.style.display = "block";
+  };
 };
 
 backBtn.onclick = function myFunction() {
-  if(signUpContainer.style.display == "block"){
+  if(sessionStorage.getItem("signUpDisplay") == "display"){
+    sessionStorage.setItem("signUpDisplay","block");
+    console.log(sessionStorage.getItem("signUpDisplay"));
     loginContainer.style.display = "block";
     signUpContainer.style.display = "none";
   } else {
@@ -54,9 +57,6 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
       sessionStorage.setItem("username", data.username);
       sessionStorage.setItem('password', data.password);
       window.location.href='/home';
-      sessionStorage.setItem("username", data.username);
-      sessionStorage.setItem('password', data.password);
-      // window.location.href='/home';
   } else {
       alert('Error creating user');
   }
@@ -91,3 +91,14 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       alert('Invalid credentials');
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (sessionStorage.getItem("signUpDisplay") !== "display") {
+    loginContainer.style.display = "block";
+    signUpContainer.style.display = "none";
+  } else {
+    loginContainer.style.display = "none";
+    signUpContainer.style.display = "block";
+  }
+});
+

@@ -238,3 +238,15 @@ document.getElementById('commentForm').addEventListener('submit', async function
   }
 });
 
+let logoutBtn = document.getElementById("detailsLogoutBtn");
+
+logoutBtn.onclick = function myFunction() {
+  if (sessionStorage.getItem("username")){
+    sessionStorage.clear();
+    sessionStorage.setItem("signUpDisplay","block");
+    window.location.href="/";
+
+  } else {
+    homeLoginBtn.innerText = "Login"
+  }
+};
