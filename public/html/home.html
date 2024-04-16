@@ -13,101 +13,26 @@
    
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="navTitleHome">Review Rater</h1>
-            <form class="search-form" action="/search" method="get">
-                <input class="search-input" type="text" name="q" placeholder="Search...">
-                <button class="search-button" type="submit">Search</button>
-            </form>
-            <nav class="navbar">
-                <ul>
-                    
-                    <li class="dropdown">
-                        <a href="#">Home Service</a>
-                        <div class="dropdown-content">
-                            <a href="#">Submenu Item 1</a>
-                            <a href="#">Submenu Item 2</a>
-                            <a href="#">Submenu Item 3</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">Auto Service</a>
-                        <div class="dropdown-content">
-                            <a href="#">Submenu Item A</a>
-                            <a href="#">Submenu Item B</a>
-                            <a href="#">Submenu Item C</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">Technology</a>
-                        <div class="dropdown-content">
-                            <a href="#">Submenu Item X</a>
-                            <a href="#">Submenu Item Y</a>
-                            <a href="#">Submenu Item Z</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">More</a>
-                        <div class="dropdown-content">
-                            <a href="#">Submenu Item 4</a>
-                            <a href="#">Submenu Item 5</a>
-                            <a href="#">Submenu Item 6</a>
-                        </div>
-                </ul>
-            </nav>
+    <nav class="navbar navbar-expand-sm">
+        <h1 class="navTitleHome">Review Rater: </h1>
+        <div class="username-display">
+            <!-- Username will be inserted here by JavaScript -->
         </div>
+        <form class="search-form" action="/search" method="get">
+            <input class="search-input" type="text" name="q" placeholder="Search...">
+            <button class="search-button" type="submit">Search</button>
+        </form>
         <div class="auth-links">
             <a id="loginBtn" href="login.html">Login</a>
             <a id="signUpBtn" href="login.html">Sign Up</a>
         </div>
-    </header>
-    
 
-    <!-- Carousel Section -->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="image1.jpg" class="d-block w-100" alt="Image 1">
-                <div class= "container">
-                    <h1>Technology</h1>
-                    <p>All the new and latest reviews on technological products such as phones,laptops, and TV</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="image2.jpg" class="d-block w-100" alt="Image 2">
-            </div>
-            <div class="carousel-item">
-                <img src="image3.jpg" class="d-block w-100" alt="Image 3">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-
-    <div class="container2">
-        <div class="titleRegion"> 
-            <section id="analysis">
-                <h2>Most Recent</h2>
-                <div class="username-display">
-                    <!-- Username will be inserted here by JavaScript -->
-                </div>
-                <div id="productList">
-                    <!-- Initial content goes here -->
-                    
-                    <!-- Add more products as needed -->
-                </div>
-            </section>
-        </div> 
         
+    </nav>
+    <div class="container" id="itemContainer">
+        <!-- Items will be dynamically added here -->
     </div>
+    
     
     <footer>
         <p>&copy; AU GOLD software engineering II</p>
@@ -121,17 +46,51 @@
         console.log("logged in as: ", sessionStorage.getItem("username"));
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // JavaScript for displaying the username
+        document.addEventListener('DOMContentLoaded', function() 
+        {
             const username = sessionStorage.getItem("username");
-            if (username) {
+
+            if (username) 
+            {
                 const usernameDisplay = document.createElement('span');
-                usernameDisplay.textContent = `Welcome User: ${username}`;
-                // Append the username display to the .username-display element
+                usernameDisplay.textContent = `Welcome ${username}!`;
                 document.querySelector('.username-display').appendChild(usernameDisplay);
                 document.getElementById('loginBtn').style.display = 'none';
+                document.getElementById('signUpBtn').style.display = 'none';
             }
         });
     </script>
+
+<script>
+    // Fetch data from server
+    fetch('/prod')
+        .then(response => response.json())
+        .then(data => {
+            // Process and display data
+            const itemContainer = document.getElementById('itemContainer');
+            itemContainer.innerHTML = ''; // Clear previous content
+
+            data.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('item');
+
+                // Create HTML structure for each item
+                const itemName = document.createElement('h2');
+                itemName.textContent = item.name;
+
+                const itemDescription = document.createElement('p');
+                itemDescription.textContent = item.description;
+
+                // Append elements to container
+                itemElement.appendChild(itemName);
+                itemElement.appendChild(itemDescription);
+                itemContainer.appendChild(itemElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+</script>
+
 </body>
 </html>
