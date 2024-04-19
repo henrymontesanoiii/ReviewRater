@@ -1,12 +1,19 @@
-const productID = "Lay's Chips"; //TO BE FIXED
+const productID = sessionStorage.getItem("product"); 
 const userID = sessionStorage.getItem('username');
-
 
 //return Product Details Function
 async function fetchProduct() {
   try {
-    console.log("Fetching Product ...")
-    const response = await fetch('/prod'); //change to + productID endpoint
+    console.log("Fetching Product " + productID)
+    const response = await fetch('/prod', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        productID: productID
+      })
+    });
     if (!response.ok) {
       throw new Error('Network response was not ok.');
     }
@@ -89,6 +96,7 @@ async function fetchComms() {
 //call API to retrive product & dynamically populate html
 fetchProduct().then(returnedObject => {
   if (returnedObject) {
+    console.log(returnedObject);
     let prodName = returnedObject.name;
     let prodDesc = returnedObject.description;
     let prodRating = Math.round(returnedObject.rating);
