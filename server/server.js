@@ -2,9 +2,6 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 var firebase = require("firebase/app");
-let productName = "Lay's Chips";
-
-
 
 
 const app = express();
@@ -152,8 +149,9 @@ app.get('/read/all', async (req, res) => {
 });
 
 //products endpoint
-app.get('/prod', async (req, res) => {
+app.post('/prod', async (req, res) => {
     try {
+        console.log('/prod Request body:', req.body.productID);
         const prodCol = db.collection("products");
         const prodResponse = await prodCol.get();
         let prodArr = [];
@@ -161,8 +159,11 @@ app.get('/prod', async (req, res) => {
             prodArr.push(doc.data());
         });
         for (let j = 0; j < prodArr.length; j++) {
-            if (prodArr[j].name == "Lay's Chips") {
-                productName == prodArr[j].name;
+            console.log("Current array Product = " + prodArr[j].name);
+            console.log("Posted Product = " + req.body.productID);
+            if (prodArr[j].name == req.body.productID) {
+                console.log("yes");
+                productName = req.body.productID;
                 res.send(prodArr[j]);
             }
         }
@@ -185,6 +186,24 @@ app.get('/comms', async (req, res,) => {
         }
 
         res.send(comments);
+    } catch (error) {
+        res.send(error);
+    }
+});
+
+//used to get the products for the html page
+app.get('/products', async (req, res) => {
+    try {
+        const prodCol = db.collection("products");
+        const prodResponse = await prodCol.get();
+        let prodArr = [];
+        prodResponse.forEach(doc => {
+            prodArr.push(doc.data());
+        });
+
+        // Send all products as response
+        res.send(prodArr);
+        
     } catch (error) {
         res.send(error);
     }
