@@ -93,7 +93,6 @@ async function fetchComms() {
   }
 }
 
-//call API to retrive product & dynamically populate html
 fetchProduct().then(returnedObject => {
   if (returnedObject) {
     console.log(returnedObject);
@@ -187,7 +186,7 @@ fetchComms().then(returnedComments => {
       document.getElementById("comments").appendChild(outsideCard);
       document.getElementById("comments").appendChild(cardBody);
       document.getElementById("comments").appendChild(cardTitle);
-      document.getElementById("comments").appendChild(cardImage);
+      //document.getElementById("comments").appendChild(cardImage);
       document.getElementById("comments").appendChild(cardText);
       if (commentReviewer == userID) {
         document.getElementById("comments").appendChild(editButton);

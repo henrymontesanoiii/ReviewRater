@@ -105,6 +105,7 @@
 <script type="module">
   import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.0';
   let classifier = await pipeline('sentiment-analysis', 'Xenova/bert-base-multilingual-uncased-sentiment');
+  let productName = "";
   // let comment = document.getElementById("potatoe").innerText
   // console.log(comment);
   // let result = await classifier(comment);
@@ -123,6 +124,117 @@
       return null;
     }
   }
+
+  async function updateComRating(rating, product) {
+
+    const response = await fetch('/comrating', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        product: product,
+        rating: rating
+      })
+    });
+    if (response.ok) {
+      console.log('Product Rating Successfully Updated!');
+      fetchProduct().then(returnedObject => {
+  if (returnedObject) {
+    console.log(returnedObject);
+    let prodName = returnedObject.name;
+    let prodDesc = returnedObject.description;
+    let prodRating = Math.round(returnedObject.rating);
+    let prodImg = returnedObject.img;
+    document.getElementById("title").innerHTML = prodName;
+    document.getElementById("desc").innerHTML = prodDesc;
+    document.getElementById("img").src = prodImg;
+
+    switch (prodRating) {
+      case (prodRating = 1):
+        document.getElementById("rating").src = "../images/1star.png";
+        break;
+      case (prodRating = 2):
+        document.getElementById("rating").src = "../images/2star.png";
+        break;
+      case (prodRating = 3):
+        document.getElementById("rating").src = "../images/3star.png";
+        break;
+      case (prodRating = 4):
+        document.getElementById("rating").src = "../images/4star.png";
+        break;
+      case (prodRating = 5):
+        document.getElementById("rating").src = "../images/5star.png";
+        break;
+      default:
+        console.log("Error finding rating");
+    }
+
+  } else {
+    // Handle error
+    console.log("Error fetching product.");
+  }
+});
+    } else {
+      alert('Error updating product ranking');
+    }
+  }
+
+  async function updateProdRating(rating, product) {
+
+const response = await fetch('/newrating', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    product: product,
+    rating: rating
+  })
+});
+if (response.ok) {
+  console.log('Product Rating Successfully Updated!');
+  fetchProduct().then(returnedObject => {
+if (returnedObject) {
+console.log(returnedObject);
+let prodName = returnedObject.name;
+let prodDesc = returnedObject.description;
+let prodRating = Math.round(returnedObject.rating);
+let prodImg = returnedObject.img;
+document.getElementById("title").innerHTML = prodName;
+document.getElementById("desc").innerHTML = prodDesc;
+document.getElementById("img").src = prodImg;
+
+switch (prodRating) {
+  case (prodRating = 1):
+    document.getElementById("rating").src = "../images/1star.png";
+    break;
+  case (prodRating = 2):
+    document.getElementById("rating").src = "../images/2star.png";
+    break;
+  case (prodRating = 3):
+    document.getElementById("rating").src = "../images/3star.png";
+    break;
+  case (prodRating = 4):
+    document.getElementById("rating").src = "../images/4star.png";
+    break;
+  case (prodRating = 5):
+    document.getElementById("rating").src = "../images/5star.png";
+    break;
+  default:
+    console.log("Error finding rating");
+}
+
+} else {
+// Handle error
+console.log("Error fetching product.");
+}
+});
+} else {
+  alert('Error updating product ranking');
+}
+}
+
   async function rateComment() {
     try {
       const returnedComments = await fetchComms();
@@ -131,13 +243,16 @@
         var allRating = 0;
         for (let i = 0; i < returnedComments.length; i++) {
           const descriptionRating = await classifier(returnedComments[i]["description"]);
-          const productName = returnedComments[i]["product"];
+          productName = returnedComments[i]["product"];
           const starRating = parseInt(descriptionRating[0]["label"].charAt(0));
+          console.log("Henry:" + returnedComments[i]);
+          //updateComRating(starRating, returnedComments[i].id);
           allRating += starRating;
           console.log(productName,":",starRating);
         }
         const averageRating = allRating/returnedComments.length;
-        console.log("average for lays: ",averageRating);
+        console.log("average for product: ",averageRating);
+        updateProdRating(averageRating, productName);
       }
     } catch (error) {
       console.error("Error in rateComment:", error);
@@ -145,6 +260,8 @@
     }
   }
   rateComment();
+  //call API to retrive product & dynamically populate html
+  
 </script>
 
 </html>

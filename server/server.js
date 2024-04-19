@@ -89,6 +89,27 @@ app.post('/edit', async (req, res) => {
     }
 });
 
+//Edit Product Rating
+app.post('/newrating', async (req, res) => {
+    try {
+        console.log('Received POST request to /newrating');
+        console.log('Request body:', req.body);
+        const product = req.body.product;
+        const rating = req.body.rating;
+        var query = await admin.firestore().collection('products')
+            .where('name', '==', product)
+            .get().then(result => {
+                result.forEach((doc) => {
+                    response = db.collection('products').doc(doc.id).update({'rating': rating});
+                });
+            });
+        res.sendStatus(200);
+    } catch (error) {
+        console.log('Error editing comment:', error);
+        res.sendStatus(error);
+    }
+});
+
 //Delete Comment
 app.post('/delete', async (req, res) => {
     try {
