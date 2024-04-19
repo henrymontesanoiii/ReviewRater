@@ -127,10 +127,16 @@
       const returnedComments = await fetchComms();
 
       if (returnedComments) {
+        var allRating = 0;
         for (let i = 0; i < returnedComments.length; i++) {
-          const result = await classifier(returnedComments[i]["description"]);
-          console.log(result[0]["label"]);
+          const descriptionRating = await classifier(returnedComments[i]["description"]);
+          const productName = returnedComments[i]["product"];
+          const starRating = parseInt(descriptionRating[0]["label"].charAt(0));
+          allRating += starRating;
+          console.log(productName,":",starRating);
         }
+        const averageRating = allRating/returnedComments.length;
+        console.log("average for lays: ",averageRating);
       }
     } catch (error) {
       console.error("Error in rateComment:", error);

@@ -202,9 +202,6 @@ app.get('/home', function (req, res) {
 app.get('/details', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/html/details.html'));
 });
-app.get("/hugging", function (req, res){
-    res.sendFile(path.join(__dirname, "../public/html/huggingFaceTest.html"));
-});
 
 app.listen(PORT);
 console.log(`App is now running on http://localhost:${PORT}`);
