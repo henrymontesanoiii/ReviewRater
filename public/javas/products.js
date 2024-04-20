@@ -37,7 +37,7 @@ fetchProducts().then(returnedProducts => {
 
     returnedProducts.forEach(element => {
       const productName = element.name;
-      const productRating = element.rating.toString();
+      const productRating = parseFloat(element.rating).toFixed(2);
       const productDescription = element.description;
       const productImage = element.img;
 

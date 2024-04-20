@@ -1,0 +1,22 @@
+.card 
+{
+    display: block;
+    text-align: center !important;
+    background-color: #bdeac8;
+            
+    color: #2a5828;
+    border-radius: 24px;  
+    margin-bottom: 10px;
+    width: 300px; 
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card img 
+{
+    max-width: 100%; 
+}
+
+body 
+{
+    background-color:#bdeac8;
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review Rater</title>
+    <title>Review Rater - Login Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -11,24 +11,23 @@
     <link rel="stylesheet" href="../css/login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
-        <nav class="navbar navbar-expand-sm">
-            <h1 class="navTitleHome">Review Rater: </h1>
-            <div class="username-display">
-                <!-- Username will be inserted here by JavaScript -->
-            </div>
-            
-            <div class="auth-links">
-                <a id="signUpBtn" href="login.html">View Products</a>
-            </div>
-        </nav>
+<body class="container-fluid">
+    <header>
+        <div class="header-content">
+            <h1 class="navTitleHome">Review Rater: Welcome!</h1>
+        </div>
+        <div class="auth-links">
+            <a id="homeLoginBtn" href="/">Login</a>
+            <a id="signUpBtn" href="/">Sign Up</a>
+        </div>
+    </header>
         <div id="loginContainer">
             <h3 class="headerClass">Been here before?</h3>
             <form id="loginForm">
                 <label>Username:</label><br>
-                <input class="loginInput" type="text" id="loginUsername" name="username" value="Enter Username Here"><br><br>
+                <input class="loginInput" type="text" id="loginUsername" name="username" placeholder="Enter Username Here" required><br><br>
                 <label>Password:</label><br>
-                <input class="loginInput" type="text" id="loginPassword" name="password" value="***********"><br><br>
+                <input class="loginInput" type="password" id="loginPassword" name="password" placeholder="Enter Password Here" required><br><br>
                 <button type="submit" class="loginPageBtn">Login</button>
             </form>
             <h3 class="headerClass">First time?</h3>
@@ -37,22 +36,20 @@
         <div id="signUpContainer">
             <form id="createUserForm">
                 <label>Email:</label><br>
-                <input class="loginInput" type="text" name="email" value="user@mail.com"><br><br>
+                <input class="loginInput" type="email" name="email" placeholder="user@mail.com" required><br><br>
                 <label>First Name:</label><br>
-                <input class="loginInput" type="text" name="firstname" value="John"><br><br>
+                <input class="loginInput" type="text" name="firstname" placeholder="Enter First Name Here" required><br><br>
                 <label>Last Name:</label><br>
-                <input class="loginInput" type="text" name="lastname" value="Smith"><br><br>
+                <input class="loginInput" type="text" name="lastname" placeholder="Enter Last Name Here" required><br><br>
                 <label>Username:</label><br>
-                <input class="loginInput" type="text" id="signUpUsername" name="username" value="Enter Username Here"><br><br>
+                <input class="loginInput" type="text" id="signUpUsername" name="username" placeholder="Enter Username Here" required><br><br>
                 <label>Password:</label><br>
-                <input class="loginInput" type="text" id="signUpPassword" name="password" value="***********"><br><br>
+                <input class="loginInput" type="password" id="signUpPassword" name="password" placeholder="Enter Password Here" required><br><br>
                 <button type="submit" class="loginPageBtn">Create</button>
             </form>
             <button class="loginPageBtn" id="backBtn">Back</button>
         </div>
-        <footer>
-            <p>&copy; AU GOLD software engineering II</p>
-        </footer>
+        
     <script src="../javas/login.js"></script>
 </body>
 </html>
