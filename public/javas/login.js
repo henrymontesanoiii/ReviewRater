@@ -32,34 +32,43 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
   
   const formData = new FormData(this);
   const data = {};
-  formData.forEach((value, key) => {
+  if(formData.get("firstname") == null || nfInput.value == "" || /[^a-zA-Z]/.test(nfInput.value)){
+    alert("Please enter your first name");
+  } else if(formData.get("lastname") == null || nlInput.value == "" || /[^a-zA-Z]/.test(nlInput.value)) {
+      alert("Please enter your last name");
+  } else if(formData.get("email") == null || formData.get("email") == "" || /[^a-zA-Z]/.test(formData.get("email"))){
+
+  } else if(formData.get("email") == null || formData.get("email") == "" || /[^a-zA-Z]/.test(formData.get("email"))){
+
+  }  else {
+    formData.forEach((value, key) => {
       data[key] = value;
-  });
+    });
+    data['uid'] = 1;
+    
+    console.log("your data email",data.email);
 
-  data['uid'] = 1;
-  
-  console.log("your data email",data.email);
+    data['uid'] = 1;
+    
+    console.log("your data email",data.email);
 
-  data['uid'] = 1;
-  
-  console.log("your data email",data.email);
+    const response = await fetch('/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
 
-  const response = await fetch('/create', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-  });
-
-  if (response.ok) {
-      alert('User created successfully');
-      sessionStorage.setItem("username", data.username);
-      sessionStorage.setItem('password', data.password);
-      window.location.href='/home';
-  } else {
-      alert('Error creating user');
-  }
+    if (response.ok) {
+        alert('User created successfully');
+        sessionStorage.setItem("username", data.username);
+        sessionStorage.setItem('password', data.password);
+        window.location.href='/home';
+    } else {
+        alert('Error creating user');
+    }
+  };
 });
 
 
