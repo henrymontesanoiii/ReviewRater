@@ -32,34 +32,41 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
   
   const formData = new FormData(this);
   const data = {};
-  formData.forEach((value, key) => {
+  if(formData.get("firstname") == null || formData.get("firstname") == "" || /[^a-zA-Z]/.test(formData.get("firstname"))){
+    alert("Please enter your first name");
+  } else if(formData.get("lastname") == null || formData.get("lastname") == "" || /[^a-zA-Z]/.test(formData.get("lastname"))) {
+      alert("Please enter your last name");
+  } else if(formData.get("password") == null || formData.get("password") == "" || /[^a-zA-Z0-9]/.test(formData.get("password")) || formData.get("password").length < 8){
+    alert("password must be at least 8 characters long!");
+  }  else {
+    formData.forEach((value, key) => {
       data[key] = value;
-  });
+    });
+    data['uid'] = 1;
+    
+    console.log("your data email",data.email);
 
-  data['uid'] = 1;
-  
-  console.log("your data email",data.email);
+    data['uid'] = 1;
+    
+    console.log("your data email",data.email);
 
-  data['uid'] = 1;
-  
-  console.log("your data email",data.email);
+    const response = await fetch('/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
 
-  const response = await fetch('/create', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-  });
-
-  if (response.ok) {
-      alert('User created successfully');
-      sessionStorage.setItem("username", data.username);
-      sessionStorage.setItem('password', data.password);
-      window.location.href='/home';
-  } else {
-      alert('Error creating user');
-  }
+    if (response.ok) {
+        alert('User created successfully');
+        sessionStorage.setItem("username", data.username);
+        sessionStorage.setItem('password', data.password);
+        window.location.href='/home';
+    } else {
+        alert('Error creating user');
+    }
+  };
 });
 
 
