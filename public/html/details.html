@@ -12,32 +12,22 @@
   <title>Review Rater - Details Page</title>
 </head>
 
-<body class=""container-fluid>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Review Rater</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a id="detailsLogoutBtn" class="nav-link" href="#">Logout</a>
-          </li>
-        </ul>
-      </div>
+<body class="container-fluid">
+  
+  <header>
+    <div class="header-content">
+        <h1 class="navTitleHome">Review Rater: Welcome!</h1>
     </div>
-  </nav>
+    <div class="auth-links">
+        <a id="homebutton" class="nav-link" href="http://localhost:8080/home">Home</a>
+        <a id="detailsLogoutBtn" class="nav-link" href="#">Logout</a>
+    </div>
+</header>
 
   <br><br>
 
   <div class="container-fluid">
     <div class="row align-items-start">
-
       <div class="col">
         <center>
           <div class="card" style="width: 18rem;">
@@ -65,9 +55,6 @@
           </div>
         </center>
       </div>
-
-
-
 
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
