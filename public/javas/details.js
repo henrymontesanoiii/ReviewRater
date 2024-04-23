@@ -24,7 +24,7 @@ async function fetchProduct() {
     return null;
   }
 }
-//Delete Comment
+//Edit Comment
 async function editComment(id) {
   var newText = prompt('Enter edited comment below:');
   if (newText != null) {
@@ -220,7 +220,7 @@ fetchComms().then(returnedComments => {
 });
 
 //add new comment
-document.getElementById('commentForm').addEventListener('submit', async function (event) {
+/*document.getElementById('commentForm').addEventListener('submit', async function (event) {
   event.preventDefault();
   newComment = "";
   const data = new FormData(this);
@@ -246,7 +246,34 @@ document.getElementById('commentForm').addEventListener('submit', async function
   } else {
     alert('Error creating comment');
   }
-});
+});*/
+
+async function addComment() {
+  var newText = prompt('Enter new comment below:');
+  if (newText != null) {
+    const response = await fetch('/newcomment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        product: productID,
+        description: newText,
+        rating: 2,
+        reviewer: userID 
+      })
+    });
+    if (response.ok) {
+      alert('Comment Successfully Added!');
+      location.reload();
+    } else {
+      alert('Error Adding comment');
+    }
+  } else {
+    // Do nothing!
+    console.log("Did not Add");
+  }
+}
 
 let logoutBtn = document.getElementById("detailsLogoutBtn");
 
