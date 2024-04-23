@@ -183,17 +183,20 @@ fetchComms().then(returnedComments => {
       deleteButton.innerHTML = "Delete Comment";
 
       //append new cards to html
-      document.getElementById("comments").appendChild(outsideCard);
-      document.getElementById("comments").appendChild(cardBody);
-      document.getElementById("comments").appendChild(cardTitle);
+      let cardContainer = document.createElement("div");
+      cardContainer.setAttribute("class","cardContainer");
+      document.getElementById("comments").appendChild(cardContainer);
+      // cardContainer.appendChild(outsideCard);
+      cardContainer.appendChild(cardBody);
+      cardContainer.appendChild(cardTitle);
       //document.getElementById("comments").appendChild(cardImage);
-      document.getElementById("comments").appendChild(cardText);
+      cardContainer.appendChild(cardText);
       if (commentReviewer == userID) {
-        document.getElementById("comments").appendChild(editButton);
-        document.getElementById("comments").appendChild(deleteButton);
+        cardContainer.appendChild(editButton);
+        cardContainer.appendChild(deleteButton);
       }
-      document.getElementById("comments").appendChild(divVar);
-      document.getElementById("comments").appendChild(breakDiv);
+      cardContainer.appendChild(divVar);
+      cardContainer.appendChild(breakDiv);
     });
 
     //adding eventlistener to dynamic buttons
